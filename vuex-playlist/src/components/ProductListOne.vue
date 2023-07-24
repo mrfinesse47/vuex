@@ -12,13 +12,11 @@
 
 <script>
 export default {
-    props: ['products'],
-    data() {
-        return {
-
-        }
+    computed: {
+        products() { return this.$store.state.products }
     }
 }
+
 </script>
 
 <style scoped>
@@ -44,4 +42,5 @@ export default {
 .price {
     font-weight: bold;
     color: #E8800C;
-}</style>
+}
+</style>

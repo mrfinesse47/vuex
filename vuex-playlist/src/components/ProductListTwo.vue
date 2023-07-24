@@ -12,11 +12,8 @@
 
 <script>
 export default {
-    props: ['products'],
-    data() {
-        return {
-
-        }
+    computed: {
+        products() { return this.$store.state.products }
     }
 }
 </script>
@@ -45,4 +42,5 @@ export default {
     font-weight: bold;
     color: #860CE8;
     display: block;
-}</style>
+}
+</style>
