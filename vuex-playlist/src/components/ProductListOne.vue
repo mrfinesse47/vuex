@@ -7,29 +7,36 @@
                 <span class="price">£{{ product.price }}</span>
             </li>
         </ul>
-        <button v-on:click="reducePrice">Reduce Price</button>
+        <button v-on:click="reducePrice(4)">Reduce Price</button>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
+
 export default {
     computed: {
         products() {
             return this.$store.state.products;
         },
-        saleProducts() {
-            return this.$store.getters.saleProducts;
-        }
+        // saleProducts() {
+        //     return this.$store.getters.saleProducts;
+        // }
+        ...mapGetters(['saleProducts']) // does what the line above does, imagine we can have multiple of these spread apart
     },
+
     methods: {
-        reducePrice: function () {
-            // this.$store.state.products.forEach(product => {
-            //     product.price -= 1
-            // });
-            this.$store.commit('reducePrice');//commits a mutation
-        }
+        // reducePrice: function (amount) {
+        // this.$store.state.products.forEach(product => {
+        //     product.price -= 1
+        // });
+        // this.$store.commit('reducePrice');//commits a mutation better to dispatch actions
+        // this.$store.dispatch('reducePrice', amount)
+        ...mapActions(['reducePrice'])// just like mapgetters we dont need a tonne of code, es6 may not be supported but it seems babel is handling it for me
     }
 }
+
 
 </script>
 

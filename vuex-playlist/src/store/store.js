@@ -17,11 +17,16 @@ export default new Vuex.Store({
     saleProducts(state) { return state.products.map((product) => ({ name: '**' + product.name + '**', price: product.price / 2 })) }
   },
   mutations: {
-    reducePrice: state => state.products.forEach(product => {
-      product.price -= 1
+    //do not use async operations inside of mutations, actions are more suited for this
+    // and even more we dont use mutations in our components rather just use actions just to keep good practice
+    reducePrice: (state, payload) => state.products.forEach(product => {
+      product.price -= payload
     })
   },
   actions: {
+    reducePrice: (context, payload) => {
+      setTimeout(() => { context.commit("reducePrice", payload) }, 400)
+    }
   },
   modules: {
   }
