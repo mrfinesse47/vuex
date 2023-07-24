@@ -13,6 +13,7 @@ export default new Vuex.Store({
     ]
   },
   getters: {
+    saleProducts(state) { return state.products.map((product) => ({ name: '**' + product.name + '**', price: product.price / 2 })) }
   },
   mutations: {
   },
